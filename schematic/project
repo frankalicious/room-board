@@ -1,0 +1,4 @@
+schematics room-board.sch
+use-files 
+elements-dir ~/footprints
+output-name board
