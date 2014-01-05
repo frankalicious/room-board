@@ -9,8 +9,11 @@
 // node 10, brightness 5, no movement detected
 // N010;B005;M000
 
-#define NODE "010"
+#define NODE "011"
 #define SPEPARATOR ";"
+
+#define DEBUG_LED
+#define MEASURE_BRIGHTNESS
 
 // msp430g2452, pir sensor, nrf24l01
 Enrf24 radio(P2_0, P2_1, P2_2);  // P2.0=CE, P2.1=CSN, P2.2=IRQ
@@ -54,12 +57,18 @@ void setup() {
   radio.setTXaddress((void*)txaddr);
 
   pinMode(PIRPIN, INPUT_PULLUP);
-
+#ifdef MEASURE_BRIGHTNESS
   pinMode(ANODE, OUTPUT);
   pinMode(CATHODE, OUTPUT);
+#endif
+#ifdef DEBUG_LED
+  pinMode(RED_LED, OUTPUT);
+#endif
+
   // initialize all the readings to 0:
   for (int thisReading = 0; thisReading < numReadings; thisReading++)
     readings[thisReading] = 0;
+  setup_temp();
 }
 
 void loop() {
@@ -67,23 +76,35 @@ void loop() {
   static int lastBrightness=0;
   static int brightness=0;
   unsigned int brightnessChanged=0;
+  byte temperature = loadTemperature(1);
   //Serial.print("brightness = ");  
   //Serial.println(measure_brightness());  
   //brightness = measure_brightness();
 
   if (lastValue == 0)//only measure brightness if light turned off
+#ifdef MEASURE_BRIGHTNESS
     brightness = smooth_brightness();
+
   if (brightness < (lastBrightness - 10) || 
-      brightness > (lastBrightness+10))
+    brightness > (lastBrightness+10))
   {
     brightnessChanged = 1;
   }
-
+#else
+  brightness = 255;//for testing without brightness sensor
+#endif
   int sensorValue = digitalRead(PIRPIN);
+
   //if (sensorValue != lastValue)
   // if (sensorValue != lastValue || brightness != lastBrightness)
   if (sensorValue != lastValue || brightnessChanged)
   {
+#ifdef DEBUG_LED
+    if (sensorValue)
+      digitalWrite(RED_LED, HIGH);
+    else
+      digitalWrite(RED_LED, LOW);
+#endif
     /*
       String payload;
      payload = "N";
@@ -100,11 +121,11 @@ void loop() {
      payload += "00";
      payload += sensorValue;
      */
-    char payload[20];
+    char payload[21];
     char buffer[4];
     // todo: zeroize not needed if strcpy is used for first char?
     // strcpy(payload,"N");
-    for (int index = 0; index < 20; index++)
+    for (int index = 0; index < 21; index++)
       payload[index] = 0;
     payload[0] = 'N';
     strcat(payload,NODE);
@@ -121,14 +142,23 @@ void loop() {
     strcat(payload,"00");
     itoa(sensorValue,buffer,10);
     strcat(payload, buffer);
-    payload[15] = 0;
+    strcat(payload,SPEPARATOR);
+    strcat(payload,"T");
+    if (temperature <10)
+      strcat(payload, "00");
+    else if (temperature <100)
+      strcat(payload, "0");
+    itoa(temperature,buffer,10);
+    strcat(payload, buffer);
+    payload[20] = 0;
     Serial.print("Sending packet: ");
     Serial.println(payload);
     Serial.print("sensor value: ");
     Serial.println(sensorValue);
     Serial.print("brightness: ");
     Serial.println(brightness);
-
+    Serial.print("temperature: ");
+    Serial.println(temperature);
     //turn off independant of brightness
     //turn on only if not too bright
     //    if (!sensorValue || brightness > LIGHT_DARK_BOUNDARY)
@@ -137,10 +167,11 @@ void loop() {
     radio.flush();  // Force transmit (don't wait for any more data)
     //dump_radio_status_to_serialport(radio.radioState());  // Should report IDLE
     //    }
-    delay(1000); 
+    delay(1000); //TODO: do we need this delay?
   }
   lastValue = sensorValue;
   lastBrightness = brightness;
+  loop_temp();
 }
 
 void dump_radio_status_to_serialport(uint8_t status)
@@ -214,5 +245,10 @@ uint8_t smooth_brightness()
   // send it to the computer as ASCII digits
   return (uint8_t) average;
 }
+
+
+
+
+
 
 
