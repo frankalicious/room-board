@@ -1,0 +1,19 @@
+blockdiag{
+#group sensors {
+group cluster_0 {
+label = "sensors";
+humidity;
+temperature;
+brightness;
+movement;
+}
+humidity -> uC;
+temperature -> uC;
+brightness -> uC;
+movement -> uC;
+
+radio -> uC;
+power_management -> uC;
+# power_management -> sensors;
+
+}
