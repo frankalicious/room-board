@@ -101,8 +101,6 @@ void loop() {
 #endif
   int sensorValue = digitalRead(PIRPIN);
 
-  //if (sensorValue != lastValue)
-  // if (sensorValue != lastValue || brightness != lastBrightness)
   if (sensorValue != lastValue || brightnessChanged)
   {
 #ifdef DEBUG_LED
