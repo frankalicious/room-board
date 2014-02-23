@@ -109,68 +109,11 @@ void loop() {
     else
       digitalWrite(RED_LED, LOW);
 #endif
-    /*
-      String payload;
-     payload = "N";
-     payload += NODE;
-     payload += SPEPARATOR;
-     payload += "B";
-     if (brightness <10)
-     payload += "00";
-     else if (brightness <100)
-     payload += "0";
-     payload += brightness;
-     payload += SPEPARATOR;
-     payload += "M";
-     payload += "00";
-     payload += sensorValue;
-     */
+
     char payload[21];
-    char buffer[4];
-    // todo: zeroize not needed if strcpy is used for first char?
-    // strcpy(payload,"N");
-    for (int index = 0; index < 21; index++)
-      payload[index] = 0;
-    payload[0] = 'N';
-    strcat(payload,NODE);
-    strcat(payload,SPEPARATOR);
-    strcat(payload,"B");
-    if (brightness <10)
-      strcat(payload, "00");
-    else if (brightness <100)
-      strcat(payload, "0");
-    itoa(brightness,buffer,10);
-    strcat(payload, buffer);
-    strcat(payload,SPEPARATOR);
-    strcat(payload,"M");
-    strcat(payload,"00");
-    itoa(sensorValue,buffer,10);
-    strcat(payload, buffer);
-    strcat(payload,SPEPARATOR);
-    strcat(payload,"T");
-    if (temperature <10)
-      strcat(payload, "00");
-    else if (temperature <100)
-      strcat(payload, "0");
-    itoa(temperature,buffer,10);
-    strcat(payload, buffer);
-    payload[20] = 0;
-    Serial.print("Sending packet: ");
-    Serial.println(payload);
-    Serial.print("sensor value: ");
-    Serial.println(sensorValue);
-    Serial.print("brightness: ");
-    Serial.println(brightness);
-    Serial.print("temperature: ");
-    Serial.println(temperature);
-    //turn off independant of brightness
-    //turn on only if not too bright
-    //    if (!sensorValue || brightness > LIGHT_DARK_BOUNDARY)
-    //    {
-    radio.print(payload);
-    radio.flush();  // Force transmit (don't wait for any more data)
-    //dump_radio_status_to_serialport(radio.radioState());  // Should report IDLE
-    //    }
+    create_string(&payload[0], brightness, sensorValue, temperature);
+    print_string(&payload[0], brightness, sensorValue, temperature);
+    send_string(&payload[0]);
     delay(1000); //TODO: do we need this delay?
   }
   lastValue = sensorValue;
@@ -250,9 +193,55 @@ uint8_t smooth_brightness()
   return (uint8_t) average;
 }
 
+void create_string(char* payload, int brightness, int sensorValue, byte temperature)
+{
+  char buffer[4];
+  // todo: zeroize not needed if strcpy is used for first char?
+  // strcpy(payload,"N");
+  for (int index = 0; index < 21; index++)
+    payload[index] = 0;
+  payload[0] = 'N';
+  strcat(payload,NODE);
+  strcat(payload,SPEPARATOR);
+  strcat(payload,"B");
+  if (brightness <10)
+    strcat(payload, "00");
+  else if (brightness <100)
+    strcat(payload, "0");
+  itoa(brightness,buffer,10);
+  strcat(payload, buffer);
+  strcat(payload,SPEPARATOR);
+  strcat(payload,"M");
+  strcat(payload,"00");
+  itoa(sensorValue,buffer,10);
+  strcat(payload, buffer);
+  strcat(payload,SPEPARATOR);
+  strcat(payload,"T");
+  if (temperature <10)
+    strcat(payload, "00");
+  else if (temperature <100)
+    strcat(payload, "0");
+  itoa(temperature,buffer,10);
+  strcat(payload, buffer);
+  payload[20] = 0;
+}
 
+void print_string(char* payload, int brightness, int sensorValue, byte temperature)
+{
+    Serial.print("Sending packet: ");
+    Serial.println(payload);
+    Serial.print("sensor value: ");
+    Serial.println(sensorValue);
+    Serial.print("brightness: ");
+    Serial.println(brightness);
+    Serial.print("temperature: ");
+    Serial.println(temperature);
 
+}
 
-
-
-
+void send_string(char* payload)
+{
+    radio.print(payload);
+    radio.flush();  // Force transmit (don't wait for any more data)
+    //dump_radio_status_to_serialport(radio.radioState());  // Should report IDLE
+}
