@@ -74,7 +74,7 @@ void saveTemperature(uint8_t ROMno){
   int32_t newtemp32;
   uint8_t i;
   newtemp32=data[1]<<8;
-  newtemp32=newtemp32+(data[0]>>4);
+  newtemp32=(newtemp32+data[0])>>4;
   result[ROMno]=byte(newtemp32);
   i=(data[0] & 0x0F)* 625/1000;
   if (i>=5)  result[ROMno]++;
