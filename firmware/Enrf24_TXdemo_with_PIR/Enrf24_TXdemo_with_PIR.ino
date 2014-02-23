@@ -81,10 +81,16 @@ void loop() {
   //Serial.println(measure_brightness());  
   //brightness = measure_brightness();
 
-  if (lastValue == 0)//only measure brightness if light turned off
 #ifdef MEASURE_BRIGHTNESS
+/*
+  if (lastValue == 0)//only measure brightness if light turned off
+  {
     brightness = smooth_brightness();
-
+  }
+*/
+  //try if it works if brightness is always measured
+  brightness = smooth_brightness();
+    
   if (brightness < (lastBrightness - 10) || 
     brightness > (lastBrightness+10))
   {
