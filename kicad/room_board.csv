@@ -1,0 +1,15 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"U1";"Sockets_DIP:DIP-20__300";1;"MSP430G2452IN20";;;
+2;"C1,C2,C4";"Discret:C1";3;"100nF";;;
+3;"C3";"Discret:C1";1;"2u2F";;;
+4;"D1,D3";"LEDs:LED-5MM";2;"LED";;;
+5;"R1,R4";"Discret:R3";2;"4k7";;;
+6;"U2";"Discret:LM78XXV";1;"7805";;;
+7;"R2,R3";"Discret:R3";2;"10k";;;
+8;"U3";"Pin_Headers:Pin_Header_Straight_1x04";1;"DHT";;;
+9;"HDR1,HDR3,HDR4";"ab2_header:AB2_HDR_M03-1V";3;"AB2_HDR03-1";;;
+10;"D2";"LEDs:LED-5MM";1;"SFH 300";;;
+11;"HDR2";"ab2_header:AB2_HDR_M04-2V";1;"AB2_HDR04-2";;;
+12;"R5";"Discret:R3";1;"47k";;;
+13;"K1";"ab2_power:AB2_PB_2MM_JACK_PTH";1;"CONN_3";;;
+14;"SYM";"Symbols:Symbol_OSHW-Logo_SilkScreen";1;"Symbol_OSHW-Logo_SilkScreen_07Jul2012";;;

@@ -1,0 +1,143 @@
+Cmp-Mod V01 Created by Cvpcb (2014-09-18 BZR 5141)-product   date = Mi 01 Okt 2014 23:20:21 CEST
+
+BeginCmp
+TimeStamp = /541A11FB;
+Reference = C1;
+ValeurCmp = 100nF;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A1A82;
+Reference = C2;
+ValeurCmp = 100nF;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A1A92;
+Reference = C3;
+ValeurCmp = 2u2F;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /541B5EE4;
+Reference = C4;
+ValeurCmp = 100nF;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A1CDE;
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /5425F8E2;
+Reference = D2;
+ValeurCmp = SFH 300;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /54261CEF;
+Reference = D3;
+ValeurCmp = LED;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /5425E16E;
+Reference = HDR1;
+ValeurCmp = AB2_HDR03-1;
+IdModule  = ab2_header:AB2_HDR_M03-1V;
+EndCmp
+
+BeginCmp
+TimeStamp = /5426410D;
+Reference = HDR2;
+ValeurCmp = AB2_HDR04-2;
+IdModule  = ab2_header:AB2_HDR_M04-2V;
+EndCmp
+
+BeginCmp
+TimeStamp = /54265497;
+Reference = HDR3;
+ValeurCmp = UART;
+IdModule  = ab2_header:AB2_HDR_M03-1V;
+EndCmp
+
+BeginCmp
+TimeStamp = /542654DE;
+Reference = HDR4;
+ValeurCmp = AB2_HDR03-1;
+IdModule  = ab2_header:AB2_HDR_M03-1V;
+EndCmp
+
+BeginCmp
+TimeStamp = /5429D710;
+Reference = K1;
+ValeurCmp = CONN_3;
+IdModule  = ab2_power:AB2_PB_2MM_JACK_PTH;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A1BD5;
+Reference = R1;
+ValeurCmp = 4k7;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /541B5894;
+Reference = R2;
+ValeurCmp = 10k;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /5425FA83;
+Reference = R3;
+ValeurCmp = 10k;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54261CE9;
+Reference = R4;
+ValeurCmp = 4k7;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /542663B0;
+Reference = R5;
+ValeurCmp = 47k;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A104C;
+Reference = U1;
+ValeurCmp = MSP430G2452IN20;
+IdModule  = Sockets_DIP:DIP-20__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /541A1855;
+Reference = U2;
+ValeurCmp = 7805;
+IdModule  = Discret:LM78XXV;
+EndCmp
+
+BeginCmp
+TimeStamp = /541B5641;
+Reference = U3;
+ValeurCmp = DHT;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
+EndCmp
+
+EndListe
