@@ -14,6 +14,7 @@
 
 #define DEBUG_LED
 #define MEASURE_BRIGHTNESS
+#define MEASURE_TEMPERATURE
 
 // msp430g2452, pir sensor, nrf24l01
 Enrf24 radio(P2_0, P2_1, P2_2);  // P2.0=CE, P2.1=CSN, P2.2=IRQ
@@ -68,7 +69,9 @@ void setup() {
   // initialize all the readings to 0:
   for (int thisReading = 0; thisReading < numReadings; thisReading++)
     readings[thisReading] = 0;
+#ifdef MEASURE_TEMPERATURE
   setup_temp();
+#endif
 }
 
 void loop() {
@@ -76,7 +79,11 @@ void loop() {
   static int lastBrightness=0;
   static int brightness=0;
   unsigned int brightnessChanged=0;
+#ifdef MEASURE_TEMPERATURE
   byte temperature = loadTemperature(1);
+#else
+  byte temperature = 0;
+#endif
   //Serial.print("brightness = ");  
   //Serial.println(measure_brightness());  
   //brightness = measure_brightness();
@@ -92,7 +99,7 @@ void loop() {
   brightness = smooth_brightness();
     
   if (brightness < (lastBrightness - 10) || 
-    brightness > (lastBrightness+10))
+      brightness > (lastBrightness+10))
   {
     brightnessChanged = 1;
   }
@@ -118,7 +125,9 @@ void loop() {
   }
   lastValue = sensorValue;
   lastBrightness = brightness;
+#ifdef MEASURE_TEMPERATURE
   loop_temp();
+#endif
 }
 
 void dump_radio_status_to_serialport(uint8_t status)
@@ -228,20 +237,20 @@ void create_string(char* payload, int brightness, int sensorValue, byte temperat
 
 void print_string(char* payload, int brightness, int sensorValue, byte temperature)
 {
-    Serial.print("Sending packet: ");
-    Serial.println(payload);
-    Serial.print("sensor value: ");
-    Serial.println(sensorValue);
-    Serial.print("brightness: ");
-    Serial.println(brightness);
-    Serial.print("temperature: ");
-    Serial.println(temperature);
+  Serial.print("Sending packet: ");
+  Serial.println(payload);
+  Serial.print("sensor value: ");
+  Serial.println(sensorValue);
+  Serial.print("brightness: ");
+  Serial.println(brightness);
+  Serial.print("temperature: ");
+  Serial.println(temperature);
 
 }
 
 void send_string(char* payload)
 {
-    radio.print(payload);
-    radio.flush();  // Force transmit (don't wait for any more data)
-    //dump_radio_status_to_serialport(radio.radioState());  // Should report IDLE
+  radio.print(payload);
+  radio.flush();  // Force transmit (don't wait for any more data)
+  //dump_radio_status_to_serialport(radio.radioState());  // Should report IDLE
 }
