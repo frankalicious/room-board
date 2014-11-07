@@ -813,4 +813,6 @@ F 3 "" H 5550 2550 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	5350 1800 5350 1900
+Text Notes 650  2800 0    60   ~ 0
+TODO: Replace C3 with electrolyt capacitor
 $EndSCHEMATC
