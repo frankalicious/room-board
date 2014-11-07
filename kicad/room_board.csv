@@ -7,9 +7,11 @@
 6;"U2";"Discret:LM78XXV";1;"7805";;;
 7;"R2,R3";"Discret:R3";2;"10k";;;
 8;"U3";"Pin_Headers:Pin_Header_Straight_1x04";1;"DHT";;;
-9;"HDR1,HDR3,HDR4";"ab2_header:AB2_HDR_M03-1V";3;"AB2_HDR03-1";;;
+9;"HDR1,HDR4";"ab2_header:AB2_HDR_M03-1V";2;"AB2_HDR03-1";;;
 10;"D2";"LEDs:LED-5MM";1;"SFH 300";;;
 11;"HDR2";"ab2_header:AB2_HDR_M04-2V";1;"AB2_HDR04-2";;;
-12;"R5";"Discret:R3";1;"47k";;;
-13;"K1";"ab2_power:AB2_PB_2MM_JACK_PTH";1;"CONN_3";;;
-14;"SYM";"Symbols:Symbol_OSHW-Logo_SilkScreen";1;"Symbol_OSHW-Logo_SilkScreen_07Jul2012";;;
+12;"HDR3";"ab2_header:AB2_HDR_M03-1V";1;"UART";;;
+13;"R5";"Discret:R3";1;"47k";;;
+14;"K1";"ab2_power:AB2_PB_2MM_JACK_PTH";1;"CONN_3";;;
+15;"SYM";"Symbols:Symbol_OSHW-Logo_SilkScreen";1;"Symbol_OSHW-Logo_SilkScreen_07Jul2012";;;
+16;"HDR5";"ab2_header:AB2_HDR_M02-1V";1;"AB2_HDR02-1";;;
