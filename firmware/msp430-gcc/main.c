@@ -8,6 +8,7 @@
 #define     LED_OUT P2OUT
 #define     LED_OFF (LED_OUT &= ~LED)
 #define     LED_ON (LED_OUT |= LED)
+#define     LED_TOGGLE (LED_OUT ^= LED)
 
 void init_led(void);
 void uart_rx_isr(unsigned char c);
