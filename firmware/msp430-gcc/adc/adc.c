@@ -9,6 +9,7 @@ __interrupt void ADC10_ISR (void);
 volatile bool ADCDone;	/* ADC Done flag */
 volatile unsigned int ADCValue;	/* Measured ADC Value */
 
+#pragma vector=ADC10_VECTOR
 __interrupt void ADC10_ISR (void)
 {
   ADCValue = ADC10MEM;	/* Saves measured value. */
