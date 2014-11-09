@@ -155,7 +155,7 @@ int main(void)
   uart_puts((char *)"***************\n\r\n\r");
 
   ADCDone = false;
-  /* Single_Measure(INCH_0); */
+  Single_Measure(INCH_0);
 #if 0
   Single_Measure_REF(INCH_10, 0);	/* Reads the temperature sensor once */
   Single_Measure_REF(INCH_11, REF2_5V);	/* Reads VCC once (VCC/2 internally) */
@@ -163,19 +163,23 @@ int main(void)
   while(1)
   {
     char buffer[10];
-    unsigned volt;
+    /* unsigned volt; */
     get_dht();
     print_dht();
 
     delay_ms(1000);
-    volt = read_voltage();
-    itoa(volt,buffer,10);
-    uart_puts("Brightness: ");
-    uart_puts(buffer);
-    uart_puts("\r\n");
+    /* volt = read_voltage(); */
+    /* itoa(volt,buffer,10); */
+    /* uart_puts("Brightness: "); */
+    /* uart_puts(buffer); */
+    /* uart_puts("\r\n"); */
     if (ADCDone)
     {
       LED_TOGGLE;
+      itoa(ADCValue,buffer,10);
+      uart_puts("Brightness: ");
+      uart_puts(buffer);
+      uart_puts("\r\n");
       ADCDone = false;
       Single_Measure(INCH_0);
 #if 0
