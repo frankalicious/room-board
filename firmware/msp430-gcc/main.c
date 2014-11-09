@@ -87,7 +87,7 @@ void init_dht (void)
 void print_dht (void)
 {
   char buffer[10];
-
+/*
   itoa(RH_byte1,buffer,10);
   uart_puts(buffer);
   uart_puts(" ");
@@ -103,6 +103,17 @@ void print_dht (void)
   itoa(checksum,buffer,10);
   uart_puts(buffer);
   uart_puts(" ");
+  uart_puts("\r\n");
+*/
+  uart_puts("Humidity: ");
+  itoa(RH_byte1,buffer,10);
+  uart_puts(buffer);
+  uart_puts("\tTemperature: ");
+  itoa(T_byte1,buffer,10);
+  uart_puts(buffer);
+  uart_puts("\tChecksum: ");
+  itoa(checksum,buffer,10);
+  uart_puts(buffer);
   uart_puts("\r\n");
 }
 
@@ -177,6 +188,7 @@ int main(void)
     delay_ms(1000);
     volt = read_voltage();
     itoa(volt,buffer,10);
+    uart_puts("Brightness: ");
     uart_puts(buffer);
     uart_puts("\r\n");
     if (ADCDone)
