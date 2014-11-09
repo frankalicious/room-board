@@ -6,6 +6,9 @@ room-board-schematic
 - brightness measuring with led (kicad version uses phototransistor)
 - nrf24l01 radio module
 
+# gateway
+https://github.com/frankalicious/nrf24l01-serial-gateway
+
 # old schematic
 gschem was used for first schematic version
 
