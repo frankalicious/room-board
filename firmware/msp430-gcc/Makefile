@@ -6,10 +6,10 @@ CFLAGS=-Os -g -mmcu=msp430g2553 \
 	-Wmissing-prototypes -Wmissing-declarations \
 	-Wredundant-decls -Wunreachable-code
 #OBJS=uart.o main.o adc.o
- SRC = main.c
- SRC += uart/uart.c
- SRC += adc/adc.c
- OBJS = $(SRC:%.c=%.o)
+SRC = main.c
+SRC += uart/uart.c
+SRC += adc/adc.c
+OBJS = $(SRC:%.c=%.o)
 
 
 all: $(OBJS)
