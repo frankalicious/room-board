@@ -11,6 +11,12 @@
 
 void init_led(void);
 void uart_rx_isr(unsigned char c);
+void delay_ms(unsigned int ms);
+void delay_ms(unsigned int ms){
+  while(ms--){
+    __delay_cycles(1000);
+  }
+}
 
 void init_led(void)
 {
