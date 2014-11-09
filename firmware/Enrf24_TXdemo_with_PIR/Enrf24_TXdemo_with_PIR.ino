@@ -9,8 +9,8 @@
 // node 10, brightness 5, no movement detected
 // N010;B005;M000
 
-#define NODE "010" /* perf board version*/
-/* #define NODE "011" /\* launchpad version *\/
+#define NODE "010" /* perf board version */
+// #define NODE "011" /* launchpad version */
 #define SPEPARATOR ";"
 
 #define DEBUG_LED
