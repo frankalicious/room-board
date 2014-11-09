@@ -1,6 +1,6 @@
 #include <msp430.h>
-#include "uart.h"
-#include "adc.h"
+#include "uart/uart.h"
+#include "adc/adc.h"
 #include "stdbool.h"
 
 #define     LED BIT3
