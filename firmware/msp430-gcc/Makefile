@@ -5,16 +5,18 @@ CFLAGS=-Os -g -mmcu=msp430g2553 \
 	-Wall -Wextra -pedantic -Wundef -Wshadow \
 	-Wmissing-prototypes -Wmissing-declarations \
 	-Wredundant-decls -Wunreachable-code
-OBJS=uart.o main.o adc.o 
-# SRC = main.c
-# SRC += uart/uart.c
-# OBJS = $(SRC:.c=.o)
+#OBJS=uart.o main.o adc.o
+ SRC = main.c
+ SRC += uart/uart.c
+ SRC += adc/adc.c
+ OBJS = $(SRC:%.c=%.o)
+
 
 all: $(OBJS)
 	$(CC) $(CFLAGS) -o main.elf $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -fr main.elf $(OBJS) *~ *.bk
