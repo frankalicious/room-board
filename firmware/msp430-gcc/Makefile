@@ -24,3 +24,6 @@ program:
 
 server:
 	mspdebug rf2500 "gdb"
+
+gdb:
+	msp430-gdb -x gdbinit
