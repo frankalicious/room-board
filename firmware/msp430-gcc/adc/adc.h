@@ -9,4 +9,6 @@ extern volatile unsigned int ADCValue;	/* Measured ADC Value */
 void Single_Measure(unsigned int chan);
 void Single_Measure_REF(unsigned int chan, unsigned int ref);
 
+unsigned read_voltage(void);    /* does not use interrupts! */
+
 #endif /* _ADC_H_ */

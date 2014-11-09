@@ -44,3 +44,18 @@ void Single_Measure_REF(unsigned int chan, unsigned int ref)
   ADC10CTL0 |= ENC + ADC10SC; /* Enable and start conversion */
 }
  
+/* http://stackoverflow.com/a/23511995 */
+unsigned read_voltage(void)
+{
+  unsigned adc, voltage;
+
+  /* ADC10CTL1 = INCH_11 | ADC10DIV_3 | ADC10SSEL_3; */
+  ADC10CTL1 = INCH_0 | ADC10DIV_3 | ADC10SSEL_3;
+  ADC10CTL0 = ADC10SHT_3 | ADC10ON | ENC | REF2_5V | ADC10SC | REFON | SREF_1;
+  while (ADC10CTL1 & ADC10BUSY) ;
+  adc = ADC10MEM;
+  ADC10CTL0 &= ~ENC;
+  voltage = adc * 5;
+
+  return voltage;
+}

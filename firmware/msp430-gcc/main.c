@@ -26,7 +26,6 @@ unsigned char Packet[5];
 void init_led(void);
 void uart_rx_isr(unsigned char c);
 void delay_ms(unsigned int ms);
-unsigned read_voltage(void);
 void get_dht(void);
 void init_dht (void);
 void print_dht (void);
@@ -115,23 +114,6 @@ void print_dht (void)
   itoa(checksum,buffer,10);
   uart_puts(buffer);
   uart_puts("\r\n");
-}
-
-/* TODO: replace with an interrupt version. The functions in adc.c do not work */
-/* http://stackoverflow.com/a/23511995 */
-unsigned read_voltage(void)
-{
-  unsigned adc, voltage;
-
-  /* ADC10CTL1 = INCH_11 | ADC10DIV_3 | ADC10SSEL_3; */
-  ADC10CTL1 = INCH_0 | ADC10DIV_3 | ADC10SSEL_3;
-  ADC10CTL0 = ADC10SHT_3 | ADC10ON | ENC | REF2_5V | ADC10SC | REFON | SREF_1;
-  while (ADC10CTL1 & ADC10BUSY) ;
-  adc = ADC10MEM;
-  ADC10CTL0 &= ~ENC;
-  voltage = adc * 5;
-
-  return voltage;
 }
 
 void delay_ms(unsigned int ms){
