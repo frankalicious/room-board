@@ -10,6 +10,9 @@ SRC = main.c
 SRC += uart/uart.c
 SRC += adc/adc.c
 SRC += DHT11_LIB/DHT11_LIB.c
+SRC += msprf24/msp430_spi.c
+SRC += msprf24/msprf24.c
+
 OBJS = $(SRC:%.c=%.o)
 
 
