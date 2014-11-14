@@ -121,27 +121,21 @@ void init_nrf24(void)
   uint8_t addr[5];
 
   /* Initial values for nRF24L01+ library config variables */
-  /* rf_crc = RF24_EN_CRC | RF24_CRCO; /\* CRC enabled, 16-bit *\/ */
   rf_crc = RF24_EN_CRC; /* CRC enabled, 8-bit */
   rf_addr_width      = 5;
   rf_speed_power     = RF24_SPEED_1MBPS | RF24_POWER_MAX;
-  /* rf_channel         = 119; */
   rf_channel         = 0;
-  /* rf_channel         = 23; */
   msprf24_init();
-  /* msprf24_set_pipe_packetsize(0, 32); */
   msprf24_set_pipe_packetsize(0, 0); /* dynamic */
   msprf24_open_pipe(0, 1);  /* Open pipe#0 with Enhanced ShockBurst */
-  /* msprf24_open_pipe(0, 0); */
 
   /* Set our RX address */
   addr[0] = 0xDE;
   addr[1] = 0xAD;
   addr[2] = 0xBE;
   addr[3] = 0xEF;
-  /* addr[4] = 0x00; */
   addr[4] = 0x01;
-  /* addr[4] = 0x23; */
+
   w_tx_addr(addr);
   w_rx_addr(0, addr);  /* Pipe 0 receives auto-ack's, autoacks are sent back to the TX addr so the PTX node */
   /* needs to listen to the TX addr on pipe#0 to receive them. */
@@ -188,7 +182,6 @@ void send_nrf24 (void)
   print_string(&buf[0], ADCValue, sensor, T_byte1);
   w_tx_payload(32, (uint8_t*)buf);
   msprf24_activate_tx();
-  /* msprf24_irq_clear(rf_irq); */
   user = msprf24_get_last_retransmits();
   itoa(user,buffer,10);
   uart_puts("last retransmit: ");
