@@ -188,7 +188,6 @@ void send_nrf24 (void)
   print_string(&buf[0], ADCValue, sensor, T_byte1);
   w_tx_payload(32, (uint8_t*)buf);
   msprf24_activate_tx();
-  flush_tx();
   /* msprf24_irq_clear(rf_irq); */
   user = msprf24_get_last_retransmits();
   itoa(user,buffer,10);
