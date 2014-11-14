@@ -43,8 +43,8 @@ void print_dht (void);
 void init_nrf24 (void);
 void check_nrf24 (void);
 void send_nrf24 (void);
-void create_string(char* payload, int brightness, int sensorValue, uint8_t temperature);
-void print_string(char* payload, int brightness, int sensorValue, uint8_t temperature);
+void create_string(char* payload, int brightness, int sensorValue, uint8_t temperature, uint8_t humidity);
+void print_string(char* payload, int brightness, int sensorValue, uint8_t temperature, uint8_t humidity);
 
 __interrupt void CCR0_ISR(void);
 
@@ -55,7 +55,7 @@ __interrupt void CCR0_ISR(void){
   /* TOG (P1OUT,0x01); */
   CLR (TACCTL0, CCIFG);
 }
-void create_string(char* payload, int brightness, int sensorValue, uint8_t temperature)
+void create_string(char* payload, int brightness, int sensorValue, uint8_t temperature, uint8_t humidity)
 {
   char buffer[4];
   int index;
@@ -86,21 +86,32 @@ void create_string(char* payload, int brightness, int sensorValue, uint8_t tempe
     strcat(payload, "0");
   itoa(temperature,buffer,10);
   strcat(payload, buffer);
-  payload[20] = 0;
+  strcat(payload,SEPARATOR);
+  strcat(payload,"H");
+  if (humidity <10)
+    strcat(payload, "00");
+  else if (humidity <100)
+    strcat(payload, "0");
+  itoa(humidity,buffer,10);
+  strcat(payload, buffer);
 }
 
-void print_string(char* payload, int brightness, int sensorValue, uint8_t temperature)
+void print_string(char* payload, int brightness, int sensorValue, uint8_t temperature, uint8_t humidity)
 {
   char buffer[10];
+  uart_puts("Sending packet: ");
+#if 0
   char* act_char = &payload[0];
   uart_puts("Sending packet: ");
   while (*act_char)
   {
     itoa(*act_char,buffer,10);
+    uart_puts(buffer);
     uart_puts(" ");
     act_char++;
   }
-  uart_puts(buffer);
+#endif
+  uart_puts(&payload[0]);
   uart_puts("\r\n");
   uart_puts("sensor value: ");
   itoa(sensorValue,buffer,10);
@@ -112,6 +123,10 @@ void print_string(char* payload, int brightness, int sensorValue, uint8_t temper
   uart_puts("\r\n");
   uart_puts("temperature: ");
   itoa(temperature,buffer,10);
+  uart_puts(buffer);
+  uart_puts("\r\n");
+  uart_puts("humidity: ");
+  itoa(humidity,buffer,10);
   uart_puts(buffer);
   uart_puts("\r\n");
 }
@@ -178,8 +193,8 @@ void send_nrf24 (void)
   uart_puts(buffer);
   uart_puts("\r\n");
 
-  create_string(&buf[0], ADCValue, sensor, T_byte1);
-  print_string(&buf[0], ADCValue, sensor, T_byte1);
+  create_string(&buf[0], ADCValue, sensor, T_byte1, RH_byte1);
+  print_string(&buf[0], ADCValue, sensor, T_byte1, RH_byte1);
   w_tx_payload(32, (uint8_t*)buf);
   msprf24_activate_tx();
   user = msprf24_get_last_retransmits();
