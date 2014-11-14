@@ -124,7 +124,7 @@ void init_nrf24(void)
   /* rf_crc = RF24_EN_CRC | RF24_CRCO; /\* CRC enabled, 16-bit *\/ */
   rf_crc = RF24_EN_CRC; /* CRC enabled, 8-bit */
   rf_addr_width      = 5;
-  rf_speed_power     = RF24_SPEED_MIN | RF24_POWER_MIN;
+  rf_speed_power     = RF24_SPEED_1MBPS | RF24_POWER_MAX;
   /* rf_channel         = 119; */
   rf_channel         = 0;
   /* rf_channel         = 23; */
