@@ -11,7 +11,7 @@
 
 #define NODE "010" /* perf board version */
 // #define NODE "011" /* launchpad version */
-#define SPEPARATOR ";"
+#define SEPARATOR ";"
 
 #define DEBUG_LED
 #define MEASURE_BRIGHTNESS
@@ -212,7 +212,7 @@ void create_string(char* payload, int brightness, int sensorValue, byte temperat
     payload[index] = 0;
   payload[0] = 'N';
   strcat(payload,NODE);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"B");
   if (brightness <10)
     strcat(payload, "00");
@@ -220,12 +220,12 @@ void create_string(char* payload, int brightness, int sensorValue, byte temperat
     strcat(payload, "0");
   itoa(brightness,buffer,10);
   strcat(payload, buffer);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"M");
   strcat(payload,"00");
   itoa(sensorValue,buffer,10);
   strcat(payload, buffer);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"T");
   if (temperature <10)
     strcat(payload, "00");

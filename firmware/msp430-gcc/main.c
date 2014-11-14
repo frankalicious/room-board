@@ -19,7 +19,7 @@
 /* #define NODE "011" /\* launchpad version *\/ */
 #define NODE "012" /* osh park version */
 
-#define SPEPARATOR ";"
+#define SEPARATOR ";"
 
 unsigned char volatile TOUT;			/* REQUIRED for library */
 unsigned char volatile SECOND_TIMER=0;
@@ -65,7 +65,7 @@ void create_string(char* payload, int brightness, int sensorValue, uint8_t tempe
     payload[index] = 0;
   payload[0] = 'N';
   strcat(payload,NODE);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"B");
   if (brightness <10)
     strcat(payload, "00");
@@ -73,12 +73,12 @@ void create_string(char* payload, int brightness, int sensorValue, uint8_t tempe
     strcat(payload, "0");
   itoa(brightness,buffer,10);
   strcat(payload, buffer);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"M");
   strcat(payload,"00");
   itoa(sensorValue,buffer,10);
   strcat(payload, buffer);
-  strcat(payload,SPEPARATOR);
+  strcat(payload,SEPARATOR);
   strcat(payload,"T");
   if (temperature <10)
     strcat(payload, "00");
