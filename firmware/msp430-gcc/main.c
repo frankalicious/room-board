@@ -184,13 +184,6 @@ void send_nrf24 (void)
   uart_puts(buffer);
   uart_puts("\r\n");
 
-  /* buf[0] = 'P'; */
-  /* buf[1] = 'E'; */
-  /* buf[2] = 'N'; */
-  /* buf[3] = 'I'; */
-  /* buf[4] = 'S'; */
-  /* buf[5] = 0; */
-
   create_string(&buf[0], ADCValue, sensor, T_byte1);
   print_string(&buf[0], ADCValue, sensor, T_byte1);
   w_tx_payload(32, (uint8_t*)buf);
