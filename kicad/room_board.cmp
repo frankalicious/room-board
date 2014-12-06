@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (2014-10-17 BZR 5199)-product   date = Fr 17 Okt 2014 23:30:20 CEST
+Cmp-Mod V01 Created by Cvpcb (2014-11-30 BZR 5308)-product   date = Sa 06 Dez 2014 13:05:46 CET
 
 BeginCmp
 TimeStamp = /541A11FB;
@@ -15,10 +15,10 @@ IdModule  = Discret:C1;
 EndCmp
 
 BeginCmp
-TimeStamp = /541A1A92;
+TimeStamp = /5482F1D6;
 Reference = C3;
 ValeurCmp = 2u2F;
-IdModule  = Discret:C1;
+IdModule  = Capacitors_Elko_ThroughHole:Elko_vert_11x5mm_RM2.5;
 EndCmp
 
 BeginCmp
@@ -85,6 +85,13 @@ IdModule  = ab2_header:AB2_HDR_M02-1V;
 EndCmp
 
 BeginCmp
+TimeStamp = /5470ACF4;
+Reference = HDR6;
+ValeurCmp = EN_POWER_LED;
+IdModule  = ab2_header:AB2_HDR_M02-1V;
+EndCmp
+
+BeginCmp
 TimeStamp = /5429D710;
 Reference = K1;
 ValeurCmp = CONN_3;
@@ -127,9 +134,9 @@ IdModule  = Discret:R3;
 EndCmp
 
 BeginCmp
-TimeStamp = /541A104C;
+TimeStamp = /54418557;
 Reference = U1;
-ValeurCmp = MSP430G2452IN20;
+ValeurCmp = MSP430G2553IN20;
 IdModule  = Sockets_DIP:DIP-20__300;
 EndCmp
 
