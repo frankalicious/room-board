@@ -1,4 +1,4 @@
-update=Fr 19 Sep 2014 20:17:57 CEST
+update=Mo 08 Dez 2014 21:58:53 CET
 version=1
 last_client=kicad
 [cvpcb]
@@ -29,7 +29,7 @@ ModuleOutlineThickness=0.150000000000
 version=1
 [eeschema]
 version=1
-LibDir=/home/alex/git/ab2tech_KiCad
+LibDir=/home/alex/git/ab2tech_KiCad;/home/alex/git/frankalicious_kicad_library
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -92,3 +92,4 @@ LibName58=/home/alex/git/ab2tech_KiCad/library/ab2_transistor
 LibName59=/home/alex/git/ab2tech_KiCad/library/ab2_uC
 LibName60=/home/alex/git/ab2tech_KiCad/library/ab2_usb
 LibName61=/home/alex/git/ab2tech_KiCad/library/ab2_xtal
+LibName62=fr_regulator

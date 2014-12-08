@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (2014-11-30 BZR 5308)-product   date = Sa 06 Dez 2014 13:05:46 CET
+Cmp-Mod V01 Created by Cvpcb (2014-11-30 BZR 5308)-product   date = Mo 08 Dez 2014 22:25:44 CET
 
 BeginCmp
 TimeStamp = /541A11FB;
@@ -64,10 +64,10 @@ IdModule  = ab2_header:AB2_HDR_M04-2V;
 EndCmp
 
 BeginCmp
-TimeStamp = /54265497;
+TimeStamp = /54864BD2;
 Reference = HDR3;
 ValeurCmp = UART;
-IdModule  = ab2_header:AB2_HDR_M03-1V;
+IdModule  = ab2_header:AB2_HDR_M06-1H-L;
 EndCmp
 
 BeginCmp
@@ -88,6 +88,13 @@ BeginCmp
 TimeStamp = /5470ACF4;
 Reference = HDR6;
 ValeurCmp = EN_POWER_LED;
+IdModule  = ab2_header:AB2_HDR_M02-1V;
+EndCmp
+
+BeginCmp
+TimeStamp = /54864496;
+Reference = HDR7;
+ValeurCmp = POWER_3V3;
 IdModule  = ab2_header:AB2_HDR_M02-1V;
 EndCmp
 
@@ -141,9 +148,9 @@ IdModule  = Sockets_DIP:DIP-20__300;
 EndCmp
 
 BeginCmp
-TimeStamp = /541A1855;
+TimeStamp = /54861353;
 Reference = U2;
-ValeurCmp = 7805;
+ValeurCmp = LM33CV;
 IdModule  = Discret:LM78XXV;
 EndCmp
 
