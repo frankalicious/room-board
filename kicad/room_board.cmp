@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (2014-11-30 BZR 5308)-product   date = Mo 08 Dez 2014 22:25:44 CET
+Cmp-Mod V01 Created by Cvpcb (2014-11-30 BZR 5308)-product   date = Mo 08 Dez 2014 22:58:18 CET
 
 BeginCmp
 TimeStamp = /541A11FB;
@@ -67,7 +67,7 @@ BeginCmp
 TimeStamp = /54864BD2;
 Reference = HDR3;
 ValeurCmp = UART;
-IdModule  = ab2_header:AB2_HDR_M06-1H-L;
+IdModule  = ab2_header:AB2_HDR_M06-1V;
 EndCmp
 
 BeginCmp
