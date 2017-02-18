@@ -22,3 +22,6 @@ $ git submodule init
 $ git submodule update
 ```
 For more information about git submodules see here: http://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+Use firmware/msp430-gcc/.
+firmware/Enrf24_TXdemo_with_PIR/ does not seem to work
